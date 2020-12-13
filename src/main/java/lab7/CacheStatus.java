@@ -11,5 +11,6 @@ public class CacheStatus {
         this.start = start;
         this.end = end;
         this.frame = frame;
+        this.time = System.currentTimeMillis();
     }
 }
