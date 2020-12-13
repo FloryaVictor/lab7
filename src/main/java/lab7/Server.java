@@ -16,8 +16,9 @@ public class Server {
         ZMQ.Socket storageSocket = context.createSocket(SocketType.ROUTER);
         clientSocket.bind(clientSever);
         storageSocket.bind(storageSever);
+        ZMQ.Poller
         while (!Thread.currentThread().isInterrupted()){
-            
+
         }
         context.destroySocket(clientSocket);
         context.destroySocket(storageSocket);
