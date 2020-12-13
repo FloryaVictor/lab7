@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Storage {
     private static String server = "tcp://localhost:8088";
-    private static ArrayList<Pair<>>
+
     public static void main(String[] argv){
         int start = Integer.parseInt(argv[0]);
         ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
