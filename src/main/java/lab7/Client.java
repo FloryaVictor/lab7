@@ -17,6 +17,7 @@ public class Client {
         Scanner in = new Scanner(System.in);
         while (!Thread.currentThread().isInterrupted()){
             String command = in.nextLine();
+            if (command == )
         }
     }
 }
