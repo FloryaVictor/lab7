@@ -17,7 +17,7 @@ public class Storage {
     private static final String GET = "get";
     private static final String PUT = "put";
     private static final String id = UUID.randomUUID().toString();
-    
+
     public static void main(String[] argv){
         int start = Integer.parseInt(argv[0]);
         ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
