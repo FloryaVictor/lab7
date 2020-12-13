@@ -2,6 +2,7 @@ package lab7;
 
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
+import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 
 public class Server {
@@ -21,7 +22,7 @@ public class Server {
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
-                
+                ZFrame frame =  
             }
         }
         context.destroySocket(clientSocket);
