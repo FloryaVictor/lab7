@@ -33,11 +33,11 @@ public class Server {
                             if (cs.start <= key && cs.end >= key){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
-
                                 break;
                             }
                         }
                     }catch (Exception ignored) {
+                        
                     }
                 }
                 if (msg.contains("put")){
