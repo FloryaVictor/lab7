@@ -22,7 +22,7 @@ public class Client {
                 break;
             }
             client.send(command, 0);
-            System.out.println(client.recvStr());
+            System.out.println(client.recvStr(0));
         }
         context.destroySocket(client);
         context.destroy();
