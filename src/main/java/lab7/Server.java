@@ -20,10 +20,10 @@ public class Server {
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
                 ZMsg msg = ZMsg.recvMsg(clientSocket);
-                
+                if 
             }
             if (poller.pollin(1)){
-                String msg = clientSocket.recvStr();
+                ZMsg msg = ZMsg.recvMsg(clientSocket);
 
             }
         }
