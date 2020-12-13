@@ -22,31 +22,31 @@ public class Server {
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
-                ZMsg msg = ZMsg.recvMsg(clientSocket);
-                String msgString = msg.getLast().toString();
-                if (msgString.contains("put")){
+                ZMsg zmsg = ZMsg.recvMsg(clientSocket);
+                String msg = zmsg.getLast().toString();
+                if (msg.contains("get")){
                     try {
-                        String[] split = msgString.split(" ");
+                        String[] split = msg.split(" ");
                         int key = Integer.parseInt(split[1]);
                         String value = split[2];
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
-                                msg.send(storageSocket, false);
+                                zmsg.send(storageSocket, false);
                             }
                         }
                     }catch (Exception ignored) {
                     }
                 }
-                if (msgString.contains("get")){
+                if (msg.contains("put")){
                     try {
-                        String[] split = msgString.split(" ");
+                        String[] split = msg.split(" ");
                         int key = Integer.parseInt(split[1]);
                         String value = split[2];
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
-                                msg.send(storageSocket, false);
+                                zmsg.send(storageSocket, false);
                             }
                         }
                     }catch (Exception ignored) {
