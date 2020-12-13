@@ -15,11 +15,12 @@ public class Storage {
         ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
         int end = start + cache.size() - 1;
         ZContext context = new ZContext(1);
-        ZMQ.Socket socket = context.createSocket(SocketType.DEALER);
-        socket.connect(server);
-
+        ZMQ.Socket dealer = context.createSocket(SocketType.DEALER);
+        dealer.connect(server);
         while (!Thread.currentThread().isInterrupted()){
-
+            
         }
+        context.destroySocket(dealer);
+        context.destroy();
     }
 }
