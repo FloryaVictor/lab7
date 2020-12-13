@@ -19,6 +19,7 @@ public class Server {
         ZMQ.Poller poller = context.createPoller(2);
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
+        
         while (!Thread.currentThread().isInterrupted()){
 
         }
