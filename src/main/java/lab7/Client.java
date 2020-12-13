@@ -16,7 +16,7 @@ public class Client {
         client.connect(server);
         Scanner in = new Scanner(System.in);
         while (!Thread.currentThread().isInterrupted()){
-            String command =
+            String command = 
         }
     }
 }
