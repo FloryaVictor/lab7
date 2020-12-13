@@ -9,6 +9,6 @@ public class Client {
 
     public static void main(String[] argv){
         ZContext context = new ZContext(1);
-        Socket
+        Socket 
     }
 }
