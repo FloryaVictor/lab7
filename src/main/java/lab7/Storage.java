@@ -17,8 +17,9 @@ public class Storage {
         ZContext context = new ZContext(1);
         ZMQ.Socket dealer = context.createSocket(SocketType.DEALER);
         dealer.connect(server);
+        
         while (!Thread.currentThread().isInterrupted()){
-            
+
         }
         context.destroySocket(dealer);
         context.destroy();
