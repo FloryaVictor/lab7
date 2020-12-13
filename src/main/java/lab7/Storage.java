@@ -1,5 +1,6 @@
 package lab7;
 
+import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
@@ -14,6 +15,8 @@ public class Storage {
         ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
         int end = start + cache.size() - 1;
         ZContext context = new ZContext(1);
-        ZMQ.Socket 
+        ZMQ.Socket socket = context.createSocket(SocketType.DEALER);
+        socket.connect(server);
+        
     }
 }
