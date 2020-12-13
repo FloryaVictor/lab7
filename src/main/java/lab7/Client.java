@@ -16,8 +16,10 @@ public class Client {
         client.connect(server);
         Scanner in = new Scanner(System.in);
         while (!Thread.currentThread().isInterrupted()){
-            String command = in.nextLine();
-            if (command == )
+            String command = in.nextLine().toLowerCase();
+            if (command.equals("quit")){
+                
+            }
         }
     }
 }
