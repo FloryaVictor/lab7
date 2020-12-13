@@ -38,6 +38,9 @@ public class Server {
                     }catch (Exception ignored) {
                     }
                 }
+                if (msgString.contains("get")){
+                    
+                }
             }
             if (poller.pollin(1)){
                 ZMsg msg = ZMsg.recvMsg(clientSocket);
