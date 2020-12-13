@@ -31,7 +31,7 @@ public class Server {
                         String value = split[2];
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key){
-                                cs.frame.send(clientSocket, ZFrame.REUSE | )
+                                cs.frame.send(clientSocket, ZFrame.REUSE | ZFrame)
                             }
                         }
                     }catch (Exception ignored) {
