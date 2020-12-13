@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Storage {
-    private static String server = "tcp://localhost:8088";
-    private static long 
+    private static final String server = "tcp://localhost:8088";
+    private static final long NOTIFY_PERIOD = 5000;
 
     public static void main(String[] argv){
         int start = Integer.parseInt(argv[0]);
@@ -20,7 +20,11 @@ public class Storage {
         dealer.connect(server);
         long time = System.currentTimeMillis();
         while (!Thread.currentThread().isInterrupted()){
-            if (System.currentTimeMillis() - time >= )
+            if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
+                dealer.send(String.format("NOTIFY %d %d", start, end));
+                time = System.currentTimeMillis();
+            }
+            int index = Integer.parseInt(dealer.recvStr());
         }
         context.destroySocket(dealer);
         context.destroy();
