@@ -1,2 +1,5 @@
-package lab7;public class Storage {
+package lab7;
+
+public class Storage {
+    
 }
