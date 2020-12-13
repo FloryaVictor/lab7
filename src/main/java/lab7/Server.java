@@ -39,7 +39,18 @@ public class Server {
                     }
                 }
                 if (msgString.contains("get")){
-                    
+                    try {
+                        String[] split = msgString.split(" ");
+                        int key = Integer.parseInt(split[1]);
+                        String value = split[2];
+                        for (CacheStatus cs : caches) {
+                            if (cs.start <= key && cs.end >= key){
+                                cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
+                                msg.send(storageSocket, false);
+                            }
+                        }
+                    }catch (Exception ignored) {
+                    }
                 }
             }
             if (poller.pollin(1)){
