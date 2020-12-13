@@ -22,7 +22,8 @@ public class Server {
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
-                String msg
+                String msg = clientSocket.recvStr();
+                
             }
         }
         context.destroySocket(clientSocket);
