@@ -12,6 +12,6 @@ public class Client {
         ZContext context = new ZContext(1);
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
-        while ()
+        while (!Thread.currentThread())
     }
 }
