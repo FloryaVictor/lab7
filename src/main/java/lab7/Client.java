@@ -2,6 +2,7 @@ package lab7;
 
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
+import org.zeromq.ZFrame;
 import org.zeromq.ZMQ;
 
 import java.util.Scanner;
