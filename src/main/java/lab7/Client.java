@@ -21,6 +21,6 @@ public class Client {
                 break;
             }
         }
-        
+        context.destroySocket();
     }
 }
