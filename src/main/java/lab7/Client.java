@@ -18,7 +18,7 @@ public class Client {
         while (!Thread.currentThread().isInterrupted()){
             String command = in.nextLine().toLowerCase();
             if (command.equals("quit")){
-                
+                break;
             }
         }
     }
