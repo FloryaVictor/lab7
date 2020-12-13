@@ -4,6 +4,8 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
+import java.util.Scanner;
+
 
 public class Client {
     public static String server = "tcp://localhost:8086";
@@ -12,8 +14,9 @@ public class Client {
         ZContext context = new ZContext(1);
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
+        Scanner in 
         while (!Thread.currentThread().isInterrupted()){
-            String command = 
+            String command =
         }
     }
 }
