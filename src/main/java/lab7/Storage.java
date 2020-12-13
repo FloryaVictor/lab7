@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class Storage {
     private static String server = "tcp://localhost:8088";
+    private static long 
 
     public static void main(String[] argv){
         int start = Integer.parseInt(argv[0]);
@@ -17,9 +18,9 @@ public class Storage {
         ZContext context = new ZContext(1);
         ZMQ.Socket dealer = context.createSocket(SocketType.DEALER);
         dealer.connect(server);
-        
+        long time = System.currentTimeMillis();
         while (!Thread.currentThread().isInterrupted()){
-
+            if (System.currentTimeMillis() - time >= )
         }
         context.destroySocket(dealer);
         context.destroy();
