@@ -7,6 +7,7 @@ import org.zeromq.ZMQ;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class Storage {
     private static final String server = "tcp://localhost:8088";
@@ -15,7 +16,8 @@ public class Storage {
     private static final String RESULT = "cache";
     private static final String GET = "get";
     private static final String PUT = "put";
-
+    private static final String id = UUID.randomUUID().toString();
+    
     public static void main(String[] argv){
         int start = Integer.parseInt(argv[0]);
         ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
