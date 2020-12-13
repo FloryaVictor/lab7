@@ -11,6 +11,7 @@ public class Storage {
     private static final String server = "tcp://localhost:8088";
     private static final long NOTIFY_PERIOD = 5000;
     private static final String NOTIFY = "notify";
+    private static final String RESULT = "cache";
     private static final String GET = "get";
     private static final String PUT = "put";
 
@@ -30,7 +31,7 @@ public class Storage {
             String msg = dealer.recvStr().toLowerCase();
             if (msg.contains(GET)) {
                 int index = Integer.parseInt(msg.split(" ")[1]);
-                dealer.send(cache.get(index - start));
+                dealer.send(String.format("%s %s",RESULT, cache.get(index - start)));
             }
             if (msg.contains(PUT)){
                 String[] split = msg.split(" ");
