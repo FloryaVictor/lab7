@@ -23,7 +23,7 @@ public class Server {
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
                 String msg = clientSocket.recvStr();
-                
+
             }
         }
         context.destroySocket(clientSocket);
