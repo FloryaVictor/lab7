@@ -21,7 +21,7 @@ public class Client {
             if (command.equals("quit")){
                 break;
             }
-            
+            client.send(command);
         }
         context.destroySocket(client);
         context.destroy();
