@@ -22,7 +22,7 @@ public class Server {
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
-                ZFrame frame =  
+                ZFrame frame = clientSocket.rec
             }
         }
         context.destroySocket(clientSocket);
