@@ -20,8 +20,9 @@ public class Client {
             if (command.equals("quit")){
                 break;
             }
+            
         }
         context.destroySocket(client);
-        
+        context.destroy();
     }
 }
