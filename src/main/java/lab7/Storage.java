@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Storage {
     private static String server = "tcp://localhost:8088";
-
+    private static ArrayList<Pair<>>
     public static void main(String[] argv){
         int start = Integer.parseInt(argv[0]);
         ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
@@ -17,7 +17,7 @@ public class Storage {
         ZContext context = new ZContext(1);
         ZMQ.Socket socket = context.createSocket(SocketType.DEALER);
         socket.connect(server);
-        
+
         while (!Thread.currentThread().isInterrupted()){
 
         }
