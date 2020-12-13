@@ -17,7 +17,7 @@ public class Server {
         clientSocket.bind(clientSever);
         storageSocket.bind(storageSever);
         ZMQ.Poller poller = context.createPoller(2);
-        
+        poller.register()
         while (!Thread.currentThread().isInterrupted()){
 
         }
