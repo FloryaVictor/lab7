@@ -3,13 +3,12 @@ package lab7;
 import org.zeromq.ZMQ;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Storage {
-    private static ArrayList<String> cache;
     public static void main(String[] argv){
-        String start = argv[0];
-        for(int i = 1; i < argv.length; i++){
-            cache
-        }
+        int start = Integer.parseInt(argv[0]);
+        ArrayList<String> cache = new ArrayList<>(Arrays.asList(argv).subList(1, argv.length));
+        int end = start + cache.size() + 1;
     }
 }
