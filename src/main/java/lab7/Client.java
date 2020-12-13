@@ -13,7 +13,7 @@ public class Client {
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
         while (!Thread.currentThread().isInterrupted()){
-            
+            String command = 
         }
     }
 }
