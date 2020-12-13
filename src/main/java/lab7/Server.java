@@ -32,7 +32,7 @@ public class Server {
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
-                                
+                                msg.send(storageSocket, )
                             }
                         }
                     }catch (Exception ignored) {
