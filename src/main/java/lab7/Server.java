@@ -1,9 +1,6 @@
 package lab7;
 
-import org.zeromq.SocketType;
-import org.zeromq.ZContext;
-import org.zeromq.ZFrame;
-import org.zeromq.ZMQ;
+import org.zeromq.*;
 
 public class Server {
     private static final String clientSever = "tcp://localhost:8086";
@@ -22,6 +19,10 @@ public class Server {
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
+                ZMsg msg = ZMsg.recvMsg()
+
+            }
+            if (poller.pollin(1)){
                 String msg = clientSocket.recvStr();
 
             }
