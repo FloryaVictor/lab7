@@ -34,7 +34,7 @@ public class Storage {
                 try {
                     int index = Integer.parseInt(msg.split(" ")[1]);
                     dealer.send(String.format("%s %s", RESULT, cache.get(index - start)));
-                } catch (NumberFormatException ||IndexOutOfBoundsException ){
+                } catch (NumberFormatException |IndexOutOfBoundsException e){
                     dealer.send("error");
                 }
             }
@@ -44,6 +44,8 @@ public class Storage {
                     int index = Integer.parseInt(split[1]);
                     String value = split[2];
                     cache.set(index - start, value);
+                } catch (NumberFormatException |IndexOutOfBoundsException ignored){
+                }
             }
         }
         context.destroySocket(dealer);
