@@ -66,8 +66,9 @@ public class Server {
                 }
             }
             if (poller.pollin(1)){
-                ZMsg msg = ZMsg.recvMsg(clientSocket);
-
+                ZMsg zmsg = ZMsg.recvMsg(clientSocket);
+                String msg = zmsg.getLast().toString();
+                
             }
         }
         context.destroySocket(clientSocket);
