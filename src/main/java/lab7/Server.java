@@ -25,6 +25,7 @@ public class Server {
             if (poller.pollin(0)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
+                System.out.println(msg);
                 if (msg.contains("get")){
                     try {
                         String[] split = msg.split(" ");
@@ -70,6 +71,7 @@ public class Server {
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
+                System.out.println(msg);
                 if (msg.contains("notify")){
                     try {
                         String[] split = msg.split(" ");
