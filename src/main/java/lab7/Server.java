@@ -78,7 +78,7 @@ public class Server {
                         boolean found = false;
                         int i = 0;
                         for(CacheStatus cs : caches){
-                            if (cs.id.equals(id)){
+                            if (cs != null && cs.id.equals(id)){
                                 found = true;
                                 break;
                             }
