@@ -29,7 +29,6 @@ public class Server {
                     try {
                         String[] split = msg.split(" ");
                         int key = Integer.parseInt(split[1]);
-                        String value = split[2];
                         boolean found = false;
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key && (System.currentTimeMillis() - cs.time < TIMEOUT)){
