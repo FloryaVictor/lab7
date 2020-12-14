@@ -69,9 +69,9 @@ public class Server {
             if (poller.pollin(STORAGE_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 zmsg.unwrap();
+                System.out.println("notify");
                 String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains("notify")){
-                    System.out.println("notify");
                     try {
                         String[] split = msg.split(" ");
                         String id = split[1];
