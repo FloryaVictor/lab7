@@ -75,6 +75,8 @@ public class Server {
                         String id = split[1];
                         int start = Integer.parseInt(split[2]);
                         int end = Integer.parseInt(split[3]);
+                        System.out.println(start);
+                        System.out.println(end);
                         boolean found = false;
                         int i = 0;
                         for(CacheStatus cs : caches){
