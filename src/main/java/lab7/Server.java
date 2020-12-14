@@ -29,17 +29,24 @@ public class Server {
                         String[] split = msg.split(" ");
                         int key = Integer.parseInt(split[1]);
                         String value = split[2];
+                        boolean found = false;
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
+                                found = true;
                                 break;
                             }
+                        }
+                        if (!found){
+                            zmsg.getLast().reset("not found");
+                            zmsg.send(clientSocket);
                         }
                     }catch (Exception ignored) {
                         zmsg.getLast().reset("error");
                         zmsg.send(clientSocket);
                     }
+
                 }
                 if (msg.contains("put")){
                     try {
