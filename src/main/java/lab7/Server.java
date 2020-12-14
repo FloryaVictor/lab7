@@ -23,7 +23,7 @@ public class Server {
         while (!Thread.currentThread().isInterrupted()){
             if (poller.pollin(0)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
-                String msg = zmsg.getLast().toString();
+                String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains("get")){
                     try {
                         String[] split = msg.split(" ");
@@ -67,8 +67,30 @@ public class Server {
             }
             if (poller.pollin(1)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
-                String msg = zmsg.getLast().toString();
-                
+                String msg = zmsg.getLast().toString().toLowerCase();
+                if (msg.contains("notify")){
+                    try {
+                        String[] split = msg.split(" ");
+                        String id = split[1];
+                        int start = Integer.parseInt(split[2]);
+                        int end = Integer.parseInt(split[3]);
+                        boolean found = false;
+                        int i;
+                        for(i = 0; i < caches.size(); i++){
+                            if (caches.get(i).id.equals(id)){
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found){
+                            caches.add(new CacheStatus(start, end, id, zmsg.getFirst()));
+                        }else {
+                            caches.get(i).start = start;
+                            caches.get(i).end = end;
+                            caches.get(i).time = System.currentTimeMillis();
+                        }
+                    }catch (Exception ignored){}
+                }
             }
         }
         context.destroySocket(clientSocket);
