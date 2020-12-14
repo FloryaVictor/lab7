@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Client {
     public static String server = "tcp://localhost:8086";
-
+    public static int RECEIVE_TIMEOUT = 3000;
     public static void main(String[] argv){
         ZContext context = new ZContext(1);
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
-        client.setReceiveTimeOut(3000);
+        client.setReceiveTimeOut(RECEIVE_TIMEOUT);
         client.connect(server);
         Scanner in = new Scanner(System.in);
         while (true){
@@ -19,7 +19,12 @@ public class Client {
                 break;
             }
             client.send(command);
-            System.out.println(client.recvStr());
+            String rep = client.recvStr();
+            if (rep != null) {
+                System.out.println(rep);
+            }else {
+                System.out.println("no answer");
+            }
         }
         context.destroySocket(client);
         context.destroy();
