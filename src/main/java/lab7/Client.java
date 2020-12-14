@@ -1,6 +1,9 @@
 package lab7;
 
-import org.zeromq.*;
+import org.zeromq.SocketType;
+import org.zeromq.ZContext;
+import org.zeromq.ZFrame;
+import org.zeromq.ZMQ;
 
 import java.util.Scanner;
 
@@ -18,10 +21,8 @@ public class Client {
             if (command.equals("quit")){
                 break;
             }
-            ZFrame frame = new ZFrame(command);
-            frame.send(client, 0);
-            ZMsg resp = ZMsg.recvMsg(client);
-            System.out.println(resp.getLast().toString());
+            client.send(command, 0);
+            System.out.println(client.recvStr(0));
         }
         context.destroySocket(client);
         context.destroy();
