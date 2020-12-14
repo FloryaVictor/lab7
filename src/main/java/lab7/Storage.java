@@ -32,29 +32,30 @@ public class Storage {
         long time = System.currentTimeMillis();
         while (poller.poll(TIMEOUT) != -1){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
-                System.out.println("notify");
                 dealer.send(String.format("%s %d %d", NOTIFY, start, end));
                 time = System.currentTimeMillis();
             }
-            ZMsg zmsg = ZMsg.recvMsg(dealer);
-            String msg = zmsg.getLast().toString().toLowerCase();
-            if (msg.contains(GET)) {
-                System.out.println(msg);
-                try {
-                    int index = Integer.parseInt(msg.split(" ")[1]);
-                    zmsg.getLast().reset(String.format("%s %s", RESULT, cache.get(index - start)));
-                } catch (NumberFormatException |IndexOutOfBoundsException e){
-                    zmsg.getLast().reset("error");
+            if (poller.pollin(0)) {
+                ZMsg zmsg = ZMsg.recvMsg(dealer);
+                String msg = zmsg.getLast().toString().toLowerCase();
+                if (msg.contains(GET)) {
+                    System.out.println(msg);
+                    try {
+                        int index = Integer.parseInt(msg.split(" ")[1]);
+                        zmsg.getLast().reset(String.format("%s %s", RESULT, cache.get(index - start)));
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        zmsg.getLast().reset("error");
+                    }
+                    zmsg.send(dealer);
                 }
-                zmsg.send(dealer);
-            }
-            if (msg.contains(PUT)){
-                try {
-                    String[] split = msg.split(" ");
-                    int index = Integer.parseInt(split[1]);
-                    String value = split[2];
-                    cache.set(index - start, value);
-                } catch (NumberFormatException |IndexOutOfBoundsException ignored){
+                if (msg.contains(PUT)) {
+                    try {
+                        String[] split = msg.split(" ");
+                        int index = Integer.parseInt(split[1]);
+                        String value = split[2];
+                        cache.set(index - start, value);
+                    } catch (NumberFormatException | IndexOutOfBoundsException ignored) {
+                    }
                 }
             }
         }
