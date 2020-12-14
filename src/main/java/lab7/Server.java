@@ -84,9 +84,9 @@ public class Server {
                             }
                         }
                         if (!found){
+                            System.out.println("here");
                             caches.add(new CacheStatus(start, end, id, zmsg.getFirst()));
                         }else {
-                            System.out.println(i);
                             caches.get(i).start = start;
                             caches.get(i).end = end;
                             caches.get(i).time = System.currentTimeMillis();
