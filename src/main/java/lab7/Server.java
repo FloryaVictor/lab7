@@ -22,10 +22,10 @@ public class Server {
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
+            System.out.println(1);
             if (poller.pollin(0)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
-                System.out.println(msg);
                 if (msg.contains("get")){
                     try {
                         String[] split = msg.split(" ");
