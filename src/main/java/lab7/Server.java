@@ -71,6 +71,7 @@ public class Server {
                 zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains("notify")){
+                    System.out.println("notify");
                     try {
                         String[] split = msg.split(" ");
                         String id = split[1];
@@ -92,9 +93,6 @@ public class Server {
                             caches.get(i).time = System.currentTimeMillis();
                         }
                     }catch (Exception ignored){}
-                    for(CacheStatus cs: caches){
-                        System.out.println(cs.id);
-                    }
                 }else {
                     zmsg.send(clientSocket);
                 }
