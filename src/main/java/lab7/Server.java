@@ -25,7 +25,6 @@ public class Server {
             if (poller.pollin(0)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
-                System.out.println(msg);
                 if (msg.contains("get")){
                     try {
                         String[] split = msg.split(" ");
