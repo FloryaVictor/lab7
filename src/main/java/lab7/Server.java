@@ -92,6 +92,9 @@ public class Server {
                             caches.get(i).time = System.currentTimeMillis();
                         }
                     }catch (Exception ignored){}
+                    for(CacheStatus cs: caches){
+                        System.out.println(cs.id);
+                    }
                 }else {
                     zmsg.send(clientSocket);
                 }
