@@ -64,6 +64,8 @@ public class Server {
                         zmsg.getLast().reset("error");
                         zmsg.send(clientSocket);
                     }
+                    zmsg.getLast().reset("put done");
+                    zmsg.send(clientSocket);
                 }
             }
             if (poller.pollin(STORAGE_SOCKET_NUMBER)){
