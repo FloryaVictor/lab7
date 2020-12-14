@@ -31,7 +31,7 @@ public class Server {
                         int key = Integer.parseInt(split[1]);
                         boolean found = false;
                         for (CacheStatus cs : caches) {
-                            if (cs.start <= key && cs.end >= key && (System.currentTimeMillis() - cs.time < TIMEOUT)){
+                            if (cs.start <= key && cs.end >= key && cs.isFresh()){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
                                 found = true;
@@ -90,7 +90,9 @@ public class Server {
                             caches.get(i).end = end;
                             caches.get(i).time = System.currentTimeMillis();
                         }
-                    }catch (Exception ignored){}
+                    }catch (Exception ignored){
+                        System.out.println(ignored.toString());
+                    }
                 }else {
                     zmsg.send(clientSocket);
                 }
