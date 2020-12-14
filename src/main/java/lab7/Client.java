@@ -20,7 +20,6 @@ public class Client {
                 break;
             }
             ZFrame frame = new ZFrame(command);
-            //client.send(command, 0);
             frame.send(client, 0);
             System.out.println(Arrays.toString(ZMsg.recvMsg(client).getLast().getData()));
         }
