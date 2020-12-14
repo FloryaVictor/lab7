@@ -67,7 +67,7 @@ public class Server {
                 }
             }
             if (poller.pollin(STORAGE_SOCKET_NUMBER)){
-                ZMsg zmsg = ZMsg.recvMsg(clientSocket);
+                ZMsg zmsg = ZMsg.recvMsg(storageSocket);
                 zmsg.unwrap();
                 System.out.println("notify");
                 String msg = zmsg.getLast().toString().toLowerCase();
