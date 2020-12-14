@@ -22,7 +22,7 @@ public class Client {
                 break;
             }
             ZFrame frame = new ZFrame(command);
-            
+            frame.send(client)
             client.send(command, 0);
             System.out.println(client.recvStr(0));
         }
