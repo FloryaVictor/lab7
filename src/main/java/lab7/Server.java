@@ -72,7 +72,7 @@ public class Server {
             }
             if (poller.pollin(STORAGE_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(storageSocket);
-                zmsg.unwrap();
+                ZFrame frame = zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains("notify")){
                     try {
@@ -90,7 +90,7 @@ public class Server {
                             i++;
                         }
                         if (!found){
-                            caches.add(new CacheStatus(start, end, id, zmsg.getFirst()));
+                            caches.add(new CacheStatus(start, end, id, frame));
                         }else {
                             caches.get(i).start = start;
                             caches.get(i).end = end;
