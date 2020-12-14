@@ -35,6 +35,7 @@ public class Server {
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
                                 found = true;
+                                break;
                             }
                         }
                         if (!found){
@@ -45,7 +46,6 @@ public class Server {
                         zmsg.getLast().reset("error");
                         zmsg.send(clientSocket);
                     }
-
                 }
                 if (msg.contains("put")){
                     try {
