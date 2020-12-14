@@ -14,6 +14,7 @@ public class CacheStatus {
         this.end = end;
         this.frame = frame;
         this.time = System.currentTimeMillis();
+        this.id = id;
     }
 
     boolean isFresh(){
