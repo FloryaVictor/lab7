@@ -21,7 +21,7 @@ public class Server {
         ZMQ.Poller poller = context.createPoller(2);
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
-        while (!Thread.currentThread().isInterrupted()){
+        while (poller.poll(3000) != -1){
             if (poller.pollin(CLIENT_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
