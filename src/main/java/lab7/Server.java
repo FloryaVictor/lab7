@@ -9,6 +9,7 @@ public class Server {
     private static final String storageSever = "tcp://localhost:8088";
     private static final int CLIENT_SOCKET_NUMBER = 0;
     private static final int STORAGE_SOCKET_NUMBER = 1;
+    private static final long TIMEOUT = 5000;
     private static final ArrayList<CacheStatus> caches = new ArrayList<>();
 
     public static void main(String[] argv){
@@ -31,7 +32,7 @@ public class Server {
                         String value = split[2];
                         boolean found = false;
                         for (CacheStatus cs : caches) {
-                            if (cs.start <= key && cs.end >= key){
+                            if (cs.start <= key && cs.end >= key && (System.currentTimeMillis() - cs.time < TIMEOUT)){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
                                 found = true;
