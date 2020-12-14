@@ -21,11 +21,10 @@ public class Server {
         ZMQ.Poller poller = context.createPoller(2);
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
-        while (poller.poll(3000) != -1){
+        while (poller.poll(TIMEOUT) != -1){
             if (poller.pollin(CLIENT_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
-                System.out.println(msg);
                 if (msg.contains("get")){
                     try {
                         String[] split = msg.split(" ");
@@ -71,7 +70,6 @@ public class Server {
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
-                System.out.println(msg);
                 if (msg.contains("notify")){
                     try {
                         String[] split = msg.split(" ");
