@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Client {
     public static String server = "tcp://localhost:8086";
 
-    public static void main(String[] argv){
+    public static void main(String[] argv) throws InterruptedException {
         ZContext context = new ZContext(1);
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
@@ -23,6 +23,7 @@ public class Client {
             }
             client.send(command, 0);
             System.out.println(client.recvStr(0));
+            Thread.currentThread().wait(1000);
         }
         context.destroySocket(client);
         context.destroy();
