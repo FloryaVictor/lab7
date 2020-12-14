@@ -10,8 +10,8 @@ public class Client {
     public static void main(String[] argv){
         ZContext context = new ZContext(1);
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
-        client.setHeartbeatTimeout(3000);
         client.connect(server);
+        client.setHeartbeatTimeout(3000);
         Scanner in = new Scanner(System.in);
         while (true){
             String command = in.nextLine();
