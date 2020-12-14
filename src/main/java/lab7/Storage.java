@@ -1,6 +1,9 @@
 package lab7;
 
-import org.zeromq.*;
+import org.zeromq.SocketType;
+import org.zeromq.ZContext;
+import org.zeromq.ZMQ;
+import org.zeromq.ZMsg;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -29,8 +32,7 @@ public class Storage {
         long time = System.currentTimeMillis();
         while (poller.poll(TIMEOUT) != -1){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
-                ZFrame frame = new ZFrame(String.format("%s %d %d", NOTIFY, start, end));
-                frame.send(dealer, 0);
+                dealer.send(String.format("%s %d %d", NOTIFY, start, end));
                 time = System.currentTimeMillis();
             }
             if (poller.pollin(0)) {
