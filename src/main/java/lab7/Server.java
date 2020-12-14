@@ -35,7 +35,6 @@ public class Server {
                             if (cs.start <= key && cs.end >= key && cs.isFresh()){
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
-                                System.out.println("found");
                                 found = true;
                                 break;
                             }
