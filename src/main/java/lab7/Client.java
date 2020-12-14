@@ -21,7 +21,7 @@ public class Client {
             ZFrame frame = new ZFrame(command);
             //client.send(command, 0);
             frame.send(client, 0);
-            System.out.println(ZMsg.recvMsg(client).getLast().getData(), ZMsg.C);
+            System.out.println(ZMsg.recvMsg(client).getLast().getData(), ZMQ.CHARSET);
         }
         context.destroySocket(client);
         context.destroy();
