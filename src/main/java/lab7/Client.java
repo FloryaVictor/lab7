@@ -24,6 +24,8 @@ public class Client {
                 System.out.println(rep);
             }else {
                 System.out.println("no answer");
+                context.destroySocket(client);
+                client = context.createSocket(SocketType.REQ);
                 client.connect(server);
             }
         }
