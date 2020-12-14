@@ -33,6 +33,8 @@ public class Server {
                         boolean found = false;
                         for (CacheStatus cs : caches) {
                             if (cs.start <= key && cs.end >= key && cs.isFresh()){
+                                System.out.println(cs.frame.toString());
+                                System.out.println(zmsg.size());
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
                                 found = true;
