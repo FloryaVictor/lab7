@@ -27,7 +27,7 @@ public class Storage {
         ZMQ.Socket dealer = context.createSocket(SocketType.DEALER);
         dealer.connect(server);
         long time = System.currentTimeMillis();
-        while (!Thread.currentThread().isInterrupted()){
+        while (true){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
                 System.out.println("notify");
                 dealer.send(String.format("%s %d %d", NOTIFY, start, end));
