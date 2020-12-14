@@ -9,9 +9,7 @@ public class Client {
     public static int RECEIVE_TIMEOUT = 3000;
     public static void main(String[] argv){
         ZContext context = new ZContext(1);
-        ZMQ.Socket client = context.createSocket(SocketType.REQ);
-        client.setReceiveTimeOut(RECEIVE_TIMEOUT);
-        client.connect(server);
+        ZMQ.Socket client = createAndConnect(context, server, RECEIVE_TIMEOUT);
         Scanner in = new Scanner(System.in);
         while (true){
             String command = in.nextLine();
@@ -25,11 +23,18 @@ public class Client {
             }else {
                 System.out.println("no answer");
                 context.destroySocket(client);
-                client = context.createSocket(SocketType.REQ);
-                client.connect(server);
+                client = createAndConnect(context, server, RECEIVE_TIMEOUT);
             }
         }
         context.destroySocket(client);
         context.destroy();
     }
+
+    public static ZMQ.Socket createAndConnect(ZContext context, String addres, int timeout){
+        ZMQ.Socket socket = context.createSocket(SocketType.REQ);
+        socket.setReceiveTimeOut(timeout);
+        socket.connect(server);
+        return socket;
+    }
+
 }
