@@ -68,6 +68,7 @@ public class Server {
             }
             if (poller.pollin(1)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
+                zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains("notify")){
                     try {
@@ -91,6 +92,8 @@ public class Server {
                             caches.get(i).time = System.currentTimeMillis();
                         }
                     }catch (Exception ignored){}
+                }else {
+                    zmsg.send(clientSocket);
                 }
             }
         }

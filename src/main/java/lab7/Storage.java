@@ -3,6 +3,7 @@ package lab7;
 import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
+import org.zeromq.ZMsg;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -31,14 +32,16 @@ public class Storage {
                 dealer.send(String.format("%s %d %d", NOTIFY, start, end));
                 time = System.currentTimeMillis();
             }
-            String msg = dealer.recvStr().toLowerCase();
+            ZMsg zmsg = ZMsg.recvMsg(dealer);
+            String msg = zmsg.getLast().toString().toLowerCase();
             if (msg.contains(GET)) {
                 try {
                     int index = Integer.parseInt(msg.split(" ")[1]);
-                    dealer.send(String.format("%s %s", RESULT, cache.get(index - start)));
+                    zmsg.getLast().reset(String.format("%s %s", RESULT, cache.get(index - start)));
                 } catch (NumberFormatException |IndexOutOfBoundsException e){
-                    dealer.send("error");
+                    zmsg.getLast().reset("error");
                 }
+                zmsg.send(dealer);
             }
             if (msg.contains(PUT)){
                 try {
