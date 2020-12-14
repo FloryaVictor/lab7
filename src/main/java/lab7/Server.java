@@ -43,7 +43,6 @@ public class Server {
                             zmsg.send(clientSocket);
                         }
                     }catch (Exception ignored) {
-                        System.out.println(ignored.toString());
                         zmsg.getLast().reset("error");
                         zmsg.send(clientSocket);
                     }
