@@ -15,8 +15,8 @@ public class Server {
     public static void main(String[] argv){
         ZContext context = new ZContext(1);
         ZMQ.Socket clientSocket = context.createSocket(SocketType.ROUTER);
-        ZMQ.Socket storageSocket = context.createSocket(SocketType.ROUTER);
         clientSocket.bind(clientSever);
+        ZMQ.Socket storageSocket = context.createSocket(SocketType.ROUTER);
         storageSocket.bind(storageSever);
         ZMQ.Poller poller = context.createPoller(2);
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
