@@ -82,10 +82,8 @@ public class Server {
                                 found = true;
                                 break;
                             }
-                            System.out.println("here1");
                         }
                         if (!found){
-                            System.out.println("here2");
                             caches.add(new CacheStatus(start, end, id, zmsg.getFirst()));
                         }else {
                             caches.get(i).start = start;
