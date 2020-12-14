@@ -30,7 +30,7 @@ public class Storage {
         while (poller.poll(TIMEOUT) != -1){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
                 ZFrame frame = new ZFrame(String.format("%s %d %d", NOTIFY, start, end));
-                frame.send()
+                frame.send(dealer, 0);
                 time = System.currentTimeMillis();
             }
             if (poller.pollin(0)) {
