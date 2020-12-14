@@ -19,9 +19,8 @@ public class Client {
             if (command.equals("quit")){
                 break;
             }
-            ZFrame frame = new ZFrame(command);
-            frame.send(client, 0);
-            System.out.println(ZMsg.recvMsg(client).getLast().toString());
+            client.send(command);
+            System.out.println(client.recvStr());
         }
         context.destroySocket(client);
         context.destroy();
