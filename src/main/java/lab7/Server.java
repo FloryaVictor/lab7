@@ -71,6 +71,7 @@ public class Server {
                 String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains("notify")){
                     try {
+                        System.out.println(msg);
                         String[] split = msg.split(" ");
                         String id = split[1];
                         int start = Integer.parseInt(split[2]);
