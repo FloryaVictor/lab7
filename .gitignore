@@ -27,4 +27,6 @@ pom.xml
 target/*
 chat-example.iml
 build.sh
+dependency-reduced-pom.xml
+
 
