@@ -22,7 +22,7 @@ public class Server {
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
         while (!Thread.currentThread().isInterrupted()){
-            if (poller.pollin(0)){
+            if (poller.pollin(CLIENT_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
                 System.out.println(msg);
@@ -67,7 +67,7 @@ public class Server {
                     }
                 }
             }
-            if (poller.pollin(1)){
+            if (poller.pollin(STORAGE_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
