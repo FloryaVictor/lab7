@@ -3,6 +3,7 @@ package lab7;
 import org.zeromq.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Server {
     private static final String clientSever = "tcp://localhost:8086";
@@ -21,7 +22,12 @@ public class Server {
         ZMQ.Poller poller = context.createPoller(2);
         poller.register(clientSocket, ZMQ.Poller.POLLIN);
         poller.register(storageSocket, ZMQ.Poller.POLLIN);
+        long time = System.currentTimeMillis();
         while (poller.poll(TIMEOUT) != -1){
+            if (System.currentTimeMillis() - time >= TIMEOUT){
+                Collections.shuffle(caches);
+                time = System.currentTimeMillis();
+            }
             if (poller.pollin(CLIENT_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
@@ -74,7 +80,7 @@ public class Server {
                 ZMsg zmsg = ZMsg.recvMsg(storageSocket);
                 ZFrame frame = zmsg.unwrap();
                 String msg = zmsg.getLast().toString().toLowerCase();
-                if (msg.contains("notify")){
+                if (msg.startsWith("notify")){
                     try {
                         String[] split = msg.split(" ");
                         String id = split[1];
