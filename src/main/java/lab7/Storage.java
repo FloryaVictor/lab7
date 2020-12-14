@@ -39,7 +39,6 @@ public class Storage {
                 ZMsg zmsg = ZMsg.recvMsg(dealer);
                 String msg = zmsg.getLast().toString().toLowerCase();
                 if (msg.contains(GET)) {
-                    System.out.println("get");
                     try {
                         int index = Integer.parseInt(msg.split(" ")[1]);
                         zmsg.getLast().reset(String.format("%s %s", RESULT, cache.get(index - start)));
