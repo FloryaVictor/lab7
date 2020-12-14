@@ -25,7 +25,7 @@ public class Server {
             if (poller.pollin(CLIENT_SOCKET_NUMBER)){
                 ZMsg zmsg = ZMsg.recvMsg(clientSocket);
                 String msg = zmsg.getLast().toString().toLowerCase();
-                if (msg.contains("get")){
+                if (msg.startsWith("get")){
                     try {
                         String[] split = msg.split(" ");
                         int key = Integer.parseInt(split[1]);
@@ -47,7 +47,7 @@ public class Server {
                         zmsg.send(clientSocket);
                     }
                 }
-                if (msg.contains("put")){
+                else if (msg.startsWith("put")){
                     try {
                         String[] split = msg.split(" ");
                         int key = Integer.parseInt(split[1]);
@@ -63,6 +63,10 @@ public class Server {
                         zmsg.send(clientSocket);
                     }
                     zmsg.getLast().reset("put done");
+                    zmsg.send(clientSocket);
+                }
+                else {
+                    zmsg.getLast().reset("wrong command");
                     zmsg.send(clientSocket);
                 }
             }
