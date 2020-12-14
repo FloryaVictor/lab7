@@ -38,8 +38,8 @@ public class Storage {
             if (poller.pollin(0)) {
                 ZMsg zmsg = ZMsg.recvMsg(dealer);
                 String msg = zmsg.getLast().toString().toLowerCase();
+                System.out.println(msg);
                 if (msg.contains(GET)) {
-                    System.out.println(msg);
                     try {
                         int index = Integer.parseInt(msg.split(" ")[1]);
                         zmsg.getLast().reset(String.format("%s %s", RESULT, cache.get(index - start)));
