@@ -76,12 +76,13 @@ public class Server {
                         int start = Integer.parseInt(split[2]);
                         int end = Integer.parseInt(split[3]);
                         boolean found = false;
-                        int i;
-                        for(i = 0; i < caches.size(); i++){
-//                            if (caches.get(i).id.equals(id)){
-//                                found = true;
-//                                break;
-//                            }
+                        int i = 0;
+                        for(CacheStatus cs : caches){
+                            if (cs.id.equals(id)){
+                                found = true;
+                                break;
+                            }
+                            i++;
                         }
                         if (!found){
                             caches.add(new CacheStatus(start, end, id, zmsg.getFirst()));
