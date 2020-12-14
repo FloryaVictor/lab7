@@ -32,7 +32,7 @@ public class Storage {
         long time = System.currentTimeMillis();
         while (poller.poll(TIMEOUT) != -1){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
-                dealer.send(String.format("%s %d %d", NOTIFY, start, end));
+                dealer.send(String.format("%s %s %d %d", NOTIFY, id, start, end));
                 time = System.currentTimeMillis();
             }
             if (poller.pollin(0)) {
