@@ -36,6 +36,7 @@ public class Server {
                                 cs.frame.send(storageSocket, ZFrame.REUSE | ZFrame.MORE);
                                 zmsg.send(storageSocket, false);
                                 found = true;
+                                System.out.println("found");
                                 break;
                             }
                         }
