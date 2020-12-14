@@ -78,10 +78,10 @@ public class Server {
                         boolean found = false;
                         int i;
                         for(i = 0; i < caches.size(); i++){
-                            if (caches.get(i).id.equals(id)){
-                                found = true;
-                                break;
-                            }
+//                            if (caches.get(i).id.equals(id)){
+//                                found = true;
+//                                break;
+//                            }
                         }
                         if (!found){
                             caches.add(new CacheStatus(start, end, id, zmsg.getFirst()));
