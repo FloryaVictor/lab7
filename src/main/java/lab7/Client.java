@@ -21,7 +21,7 @@ public class Client {
             if (command.equals("quit")){
                 break;
             }
-            ZFrame 
+            ZFrame frame = 
             client.send(command, 0);
             System.out.println(client.recvStr(0));
         }
