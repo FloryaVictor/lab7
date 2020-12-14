@@ -8,7 +8,7 @@ public class CacheStatus {
     public int end;
     public String id;
     public ZFrame frame;
-    private static long TIMEOUT = 2000;
+    private static long TIMEOUT = 5000;
 
     public CacheStatus(int start, int end, String id, ZFrame frame){
         this.start = start;
