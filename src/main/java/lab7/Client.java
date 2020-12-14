@@ -11,7 +11,6 @@ public class Client {
         ZContext context = new ZContext(1);
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
-        client.setHeartbeatTimeout(3000);
         Scanner in = new Scanner(System.in);
         while (true){
             String command = in.nextLine();
