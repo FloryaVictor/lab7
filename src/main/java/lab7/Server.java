@@ -5,8 +5,8 @@ import org.zeromq.*;
 import java.util.ArrayList;
 
 public class Server {
-    private static final String clientSever = "tcp://localhost:3585";
-    private static final String storageSever = "tcp://localhost:3586";
+    private static final String clientSever = "tcp://localhost:8086";
+    private static final String storageSever = "tcp://localhost:8088";
     private static final int CLIENT_SOCKET_NUMBER = 0;
     private static final int STORAGE_SOCKET_NUMBER = 1;
     private static final long TIMEOUT = 5000;
