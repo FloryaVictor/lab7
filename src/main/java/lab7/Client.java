@@ -23,7 +23,7 @@ public class Client {
             if (rep != null) {
                 System.out.println(rep);
             }else {
-                System.out.println("no answer");
+                System.out.println("no answer");    
             }
         }
         context.destroySocket(client);
