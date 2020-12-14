@@ -16,7 +16,7 @@ public class Client {
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
         Scanner in = new Scanner(System.in);
-        while (!Thread.currentThread().isInterrupted()){
+        while (true){
             String command = in.nextLine();
             if (command.equals("quit")){
                 break;
