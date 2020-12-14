@@ -28,7 +28,7 @@ public class Storage {
         ZMQ.Socket dealer = context.createSocket(SocketType.DEALER);
         dealer.connect(server);
         ZMQ.Poller poller = context.createPoller(1);
-        poller.register(dealer);
+        poller.register(dealer, ZMQ.Poller.POLLIN);
         long time = System.currentTimeMillis();
         while (poller.poll(TIMEOUT) != -1){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
