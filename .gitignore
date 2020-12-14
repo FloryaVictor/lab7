@@ -26,4 +26,5 @@ hs_err_pid*
 pom.xml
 target/*
 chat-example.iml
+build.sh
 
