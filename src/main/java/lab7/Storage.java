@@ -16,7 +16,7 @@ public class Storage {
     private static final String RESULT = "cache";
     private static final String GET = "get";
     private static final String PUT = "put";
-    private static final int TIMEOUT = 3000;
+    private static final long TIMEOUT = 3000;
     private static final String id = UUID.randomUUID().toString();
 
     public static void main(String[] argv){
