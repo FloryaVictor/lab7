@@ -37,7 +37,6 @@ public class Server {
                                 zmsg.send(storageSocket, false);
                                 found = true;
                                 System.out.println("found");
-                                break;
                             }
                         }
                         if (!found){
