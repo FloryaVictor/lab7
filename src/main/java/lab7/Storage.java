@@ -17,6 +17,7 @@ public class Storage {
     private static final String RESULT = "cache";
     private static final String GET = "get";
     private static final String PUT = "put";
+    private static final int TIMEOUT = 3000;
     private static final String id = UUID.randomUUID().toString();
 
     public static void main(String[] argv){
@@ -26,10 +27,11 @@ public class Storage {
         ZContext context = new ZContext(1);
         ZMQ.Socket dealer = context.createSocket(SocketType.DEALER);
         dealer.connect(server);
+        ZMQ.Poller poller = context.createPoller(1);
+        poller.register(dealer);
         long time = System.currentTimeMillis();
-        while (!Thread.currentThread().isInterrupted()){
+        while (poller.poll(TIMEOUT) != -1){
             if (System.currentTimeMillis() - time >= NOTIFY_PERIOD){
-                System.out.println("notify");
                 dealer.send(String.format("%s %d %d", NOTIFY, start, end));
                 time = System.currentTimeMillis();
             }
