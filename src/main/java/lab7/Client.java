@@ -16,14 +16,13 @@ public class Client {
         ZMQ.Socket client = context.createSocket(SocketType.REQ);
         client.connect(server);
         Scanner in = new Scanner(System.in);
-        while (!Thread.currentThread().isInterrupted()){
-            String command = in.nextLine().toLowerCase();
+        while (true){
+            String command = in.nextLine();
             if (command.equals("quit")){
                 break;
             }
             client.send(command, 0);
             System.out.println(client.recvStr(0));
-            Thread.currentThread().wait(1000);
         }
         context.destroySocket(client);
         context.destroy();
